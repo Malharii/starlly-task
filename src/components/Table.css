@@ -1,0 +1,32 @@
+.table-wrapper {
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px;
+  text-align: left;
+  margin: auto;
+  table-layout: auto;
+  overflow-x: auto;
+  justify-items: center;
+}
+
+.table th,
+.table td {
+  padding: 0.8rem;
+  border: 0.5px solid #ddd;
+  color: rgba(0, 0, 0, 0.561);
+  word-break: keep-all;
+}
+
+.table-header th {
+  color: rgba(0, 0, 0, 0.628) !important;
+}
+
+.table td {
+  border: 0.5px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
