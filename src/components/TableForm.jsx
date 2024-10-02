@@ -23,7 +23,7 @@ const usersOptions = [
 function TableForm({ onSave }) {
   const [formData, setFormData] = React.useState({
     task_name: "",
-    assigned_to: null,
+    assigned_to: [],
     end_date: "",
     tags: [],
     followers: [],
@@ -37,14 +37,14 @@ function TableForm({ onSave }) {
   const handleSave = () =>
     onSave({
       ...formData,
-      assigned_to: formData.assigned_to.value,
+      assigned_to: formData.assigned_to.map((ass) => ass.value),
       tags: formData.tags.map((tag) => tag.value),
       followers: formData.followers.map((follower) => follower.value),
     });
   let isFormValid = true;
   if (
     !formData.task_name.trim() ||
-    !formData.assigned_to ||
+    formData.assigned_to.length === 0 ||
     formData.tags.length === 0 ||
     !formData.end_date ||
     formData.followers.length === 0 ||
@@ -72,6 +72,7 @@ function TableForm({ onSave }) {
           <Select
             className="mb-3"
             options={usersOptions}
+            isMulti
             placeholder="Assigned To"
             value={formData.assigned_to}
             onChange={(value) => handleChange("assigned_to", value)}

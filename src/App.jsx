@@ -21,7 +21,7 @@ function App() {
     {
       id: 1,
       task_name: "Task 1",
-      assigned_to: "User 2",
+      assigned_to: ["User 5", "User 3"],
       start_date: new Date(),
       end_date: "2025-10-10",
       tags: ["Tag 1", "Tag 2", "Tag 4", "Tag 5"],
@@ -31,7 +31,7 @@ function App() {
     {
       id: 2,
       task_name: "Task 2",
-      assigned_to: "User 4",
+      assigned_to: ["User 1"],
       start_date: new Date(),
       end_date: "2025-01-01",
       tags: ["Tag 1", "Tag 2"],
@@ -96,6 +96,22 @@ function App() {
       {
         Header: () => <div>Assigned to</div>,
         accessor: "assigned_to",
+        Cell: ({ row }) => {
+          const updated = convertLargeArray(row.original.assigned_to, 1);
+          return updated.map((el, index) => (
+            <span
+              title={row.original.assigned_to.join(", ")}
+              className="rounded ms-1 px-2 fw-light py-1"
+              style={{
+                background:
+                  index === updated.length - 1 && updated.length !== 1 ? "#ccc" : "white",
+                fontSize: ".9rem",
+              }}
+            >
+              {el}
+            </span>
+          ));
+        },
       },
       {
         Header: () => <div>Start Date</div>,
